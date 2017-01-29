@@ -15,41 +15,30 @@ $(document).ready(function() {
   		}
   });
 
-	// delete item from list when delete button is clicked
-	$(".shopping-item-delete").click(function(event){
+	// cross out item when check button is pressed
+	$(".shopping-list").on("click", ".shopping-item-toggle", function (event) {
+        $(this).closest("li").find(".shopping-item").toggleClass("shopping-item__checked");
+    })
 
-		deleteItem();
-	});
-
-	// cross out item when check button is clicked
-	$("shopping-item-toggle").click(function(event){
-		checkItem();
-	});	
+	//delete item when delete button is pressed
+	$(".shopping-list").on("click", ".shopping-item-delete", function (event) {
+    $(this).closest("li").remove();
+    });
 
 });
 
-function addItem() {
-	var newItem = $('#shopping-list-entry').val();
-    $('.shopping-list').val();
-    $('.shopping-list').append('<li>' +
-      '<span class="shopping-item js-shopping-item">' + newItem + '</span>' +
-      '<div class="shopping-item-controls">' +
+     function addItem() {
+		var newItem = $('#shopping-list-entry').val();
+    	$('.shopping-list').val();
+    	$('.shopping-list').append('<li>' +
+      	'<span class="shopping-item js-shopping-item">' + newItem + '</span>' +
+      	'<div class="shopping-item-controls">' +
         '<button class="js-shopping-item-toggle">' +
-          '<span class="button-label">check</span>' +
+        '<span class="button-label">check</span>' +
         '</button>' +
         '<button class="js-shopping-item-delete">' +
           '<span class="button-label">delete</span>' +
         '</button>' +
-      '</div>' +
-    '</li>');
-}
-
-function deleteItem() {
-	$(this).closest("li").remove();
-}
-
-function checkItem () {
-	$(this).siblings(".shopping-item").toggleClass("shopping-item__checked");
-}
-
-
+      	'</div>' +
+    	'</li>');
+	}
